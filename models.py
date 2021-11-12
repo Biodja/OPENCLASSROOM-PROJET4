@@ -63,9 +63,11 @@ class Tournoi:
         tournois.append(self)
 
     def ajouter_joueurs(self, joueurs):
-
+        if (len(joueurs) + len(self.joueurs)) % 2 != 0:
+            raise UserException(
+                "Impossible d'avoir un tournoi avec un nombre de joueurs impair"
+            )
         for j in joueurs:
-
             self.joueurs.append(j)
 
             # verifier que les joueurs sont pairs
@@ -107,7 +109,6 @@ class Tournoi:
             for j, s in tour.scores.items():
                 if j in score:
                     score[j] += s
-
                 else:
                     score[j] = s
         return score
@@ -121,10 +122,13 @@ class Tournoi:
             not match.finished for match in self.last_turn.matchs
         ):
             raise UserException("Le dernier tour n'est même pas encore terminé")
+        if not self.joueurs:
+            raise UserException("Impossible de passer au tour suivant sans joueurs")
         matchs = []
         for paire in self.generer_paires():
             joueur_blanc, joueur_noir = random.sample(paire, 2)
             matchs.append(Match(joueur_blanc, joueur_noir))
+        assert len(matchs) > 0
 
         self.tours.append(Tour(matchs))
 
@@ -255,6 +259,7 @@ class Joueur:
 
 class Tour:
     def __init__(self, matchs) -> None:
+        assert len(matchs) > 0
         self.matchs = matchs
 
     @property
