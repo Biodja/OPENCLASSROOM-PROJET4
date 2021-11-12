@@ -226,7 +226,6 @@ class Ronde:
         self.nom = "Ronde"
         return f"{self.nom}"
 
-
 class Joueur:
     joueurs_cree = 0
 
