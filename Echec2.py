@@ -1,19 +1,20 @@
-
 from formulaire import Formulaire
 from fields import AskJoueursField, Field, ChoiceField, IntField, dateField
 from action import Action
 from models import Tournoi, Blitz, Bullet, CoupRapide, joueurs, tournois
 from menu import Menu, ACTION_BREAK, QUIT
-from view import historique_general
+from view import (
+    historique_general,
+    lister_info_tournoi,
+    lister_joueurs_tournoi,
+    tableau_des_scores,
+    afficher_pairs_tournois,
+)
 from controllers import (
     info_joueurs,
-    lister_joueurs_tournoi,
-    lister_info_tournoi,
     lancer_tour_suivant,
     selection_gagnant_match,
-    tableau_des_scores,
     ajouter_joueurs_tournois,
-    afficher_pairs_tournois,
 )
 
 YES_NO_TO_BOOL = {

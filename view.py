@@ -6,10 +6,12 @@ from exception import NotYetAvailable
 def print_num_choix(num_choix, choice):
     print(f"[{num_choix}] {choice}")
 
+
 def message_tournois_terminer():
     print("-------------------------")
     print("/!\\ Tournoi terminé /!\\ ")
     print("-------------------------")
+
 
 def print_separation():
     print("------")
@@ -18,7 +20,8 @@ def print_separation():
 def afficher_matchs(tournoi_choisi):
     for match in tournoi_choisi.last_turn.matchs:
         print(
-            f"Blancs: {match.joueur_blanc}({match.joueur_blanc.classement}) vs Noirs:{match.joueur_noir}({match.joueur_noir.classement})"
+            f"Blancs: {match.joueur_blanc}({match.joueur_blanc.classement}) vs "
+            f"Noirs:{match.joueur_noir}({match.joueur_noir.classement})"
         )
     print(f"Tour n°{len(tournoi_choisi.tours)} / {tournoi_choisi.nombre_de_tours}")
 

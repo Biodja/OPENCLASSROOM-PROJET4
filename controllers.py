@@ -8,11 +8,6 @@ from formulaire import Formulaire
 from view import (
     message_tournois_terminer,
     print_separation,
-    joueurs_data,
-    lister_info_tournoi,
-    lister_joueurs_tournoi,
-    tableau_des_scores,
-    afficher_pairs_tournois,
     afficher_matchs,
 )
 
@@ -39,22 +34,22 @@ def ask_user(
 
 def info_joueurs():
     print_separation()
-    nom = ask_user(f"Entre le nom du joueur : ")
-    prenom = ask_user(f"Entre le prenom du joueur : ")
+    nom = ask_user("Entre le nom du joueur : ")
+    prenom = ask_user("Entre le prenom du joueur : ")
     date_de_naissance = ask_user(
-        f"Enter date du joueur : ",
+        "Enter date du joueur : ",
         message_error="Le format date (**/**/****) doit être respecter!",
         convertor=lambda s: datetime.datetime.strptime(s, "%d/%m/%Y"),
         validator=lambda _: True,
     )
     sexe = ask_user(
-        f"Enter sexe du joueur H/F : ",
+        "Enter sexe du joueur H/F : ",
         message_error="Doit être H ou F",
         validator=lambda s: s in {"H", "F"},
         convertor=lambda s: s.upper(),
     )
     classement = ask_user(
-        f"Enter classement du joueur : ",
+        "Enter classement du joueur : ",
         message_error=" le classement doit être un nombre positif",
         validator=lambda n: n > 0,
         convertor=int,
@@ -100,7 +95,7 @@ def selection_gagnant_match(tournoi_choisi: Tournoi):
         raise NotYetAvailable(
             "Veuillez générer les pairs avant de déclaré un gagnant !"
         )
-    reponses = Formulaire(
+    Formulaire(
         "Choisir match",
         [
             ChoiceField("match", "Quel Match ?", tournoi_choisi.last_turn.matchs),
