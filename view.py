@@ -86,3 +86,7 @@ def afficher_pairs_tournois(tournoi_choisi: Tournoi):
     pairs_du_tournois = tournoi_choisi.generer_paires()
     for pairs in pairs_du_tournois:
         print(f"joueur:{pairs[0]} vs joueur:{pairs[1]}")
+
+
+def print_choix(choices, nb_choices):
+    print(f"Choix n°{len(choices) + 1}/{nb_choices}")

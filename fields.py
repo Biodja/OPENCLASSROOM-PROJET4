@@ -1,5 +1,5 @@
 import datetime
-from view import print_num_choix
+from view import print_num_choix, print_choix
 from exception import UserException
 from views.errors import afficher_erreur_champ
 
@@ -108,12 +108,11 @@ class MultipleChoiceField(ChoiceField):
         if not self.choices:
             raise Exception("Impossible de choisir 1 choix parmi aucune possibilité")
         while len(choices) < nb_choices:
-            print(f"Choix n°{len(choices) + 1}/{nb_choices}")
+            print_choix(choices, nb_choices)
 
             choice = super().poser_question()
-            if self.unique and choice in choices:
-                print(f"impossible de faire ce choix: {choice} car déjà choisi !")
-
+            if self.unique and any(c is choice for c in choices):
+                afficher_erreur_champ(Exception(f"impossible de faire ce choix: {choice} car déjà choisi !"), self)
             else:
                 choices.append(choice)
 

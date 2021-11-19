@@ -1,3 +1,4 @@
+
 import operator
 import random
 from exception import UserException, NotYetAvailable
@@ -62,21 +63,27 @@ class Tournoi:
         self.tours = []
         tournois.append(self)
 
-    def ajouter_joueurs(self, joueurs):
+    def ajouter_joueurs(self, joueurs: list):
         if (len(joueurs) + len(self.joueurs)) % 2 != 0:
             raise UserException(
                 "Impossible d'avoir un tournoi avec un nombre de joueurs impair"
             )
+        doublons = []
+        for joueur in self.joueurs:
+            if any(hash(joueur) == hash(j) for j in joueurs):
+                doublons.append(joueur)
+        if doublons:
+            doublons = '\n'.join(f'- {joueur}' for joueur in doublons)
+            raise UserException(
+                "Impossible d'avoir des joueurs en doublon. Ces joueurs participent déjà au tournoi : \n" + doublons
+            )
         for j in joueurs:
             self.joueurs.append(j)
-
-            # verifier que les joueurs sont pairs
 
     def lister_joueurs(self):
         for i, joueur in enumerate(self.joueurs):
             print(f"{i}) {joueur.nom}")
-        pass
-
+        
     def resultats(self):
         pass
 
@@ -231,9 +238,6 @@ class Joueur:
     joueurs_cree = 0
 
     def __init__(self, nom, prenom, date_de_naissance, sexe, classement):
-        Joueur.joueurs_cree += 1
-        if Joueur.joueurs_cree == 8:
-            raise UserException("Les 8 joueurs ont bien été crée")
         self.nom = nom
         self.prenom = prenom
         self.date_de_naissance = date_de_naissance
