@@ -58,7 +58,8 @@ def lister_info_tournoi(tournoi_choisi: Tournoi):
 
 def historique_general():
     for tournoi in tournois:
-        print(f"Non du tournoi: {tournoi.nom}\nNombre de tours : {tournoi.nombre_de_tours}\nMode de temps : {tournoi.controle_du_temps}\nle {tournoi.date} à {tournoi.lieu}")
+        print(f"Non du tournoi: {tournoi.nom}\n Nombre de tours : {tournoi.nombre_de_tours}\n"
+              f"Mode de temps : {tournoi.controle_du_temps}\nle {tournoi.date} à {tournoi.lieu}")
         tableau_des_scores(tournoi)
         print_separation()
 

@@ -1,4 +1,3 @@
-
 import operator
 import random
 from exception import UserException, NotYetAvailable
@@ -7,15 +6,17 @@ import pickle
 joueurs = []
 tournois = []
 
-#permet de souvegarder les données dans un fichier db
+
 def save_to_db():
+    """permet de souvegarder les données dans un fichier db"""
     with open("joueurs.db", "wb") as file:
         pickle.dump(joueurs, file)
     with open("tournois.db", "wb") as file:
         pickle.dump(tournois, file)
 
-# permet de lire les fichiers db
+
 def read_from_db():
+    """permet de lire les fichiers db"""
     global joueurs
     global tournois
     with open("joueurs.db", "rb") as file:
