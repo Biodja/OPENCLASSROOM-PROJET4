@@ -34,22 +34,22 @@ def ask_user(
 
 def info_joueurs():
     print_separation()
-    nom = ask_user("Entre le nom du joueur : ")
-    prenom = ask_user("Entre le prenom du joueur : ")
+    nom = ask_user("Entre le nom du joueur :\n")
+    prenom = ask_user("Entre le prenom du joueur :\n")
     date_de_naissance = ask_user(
-        "Enter date du joueur : ",
+        "Enter date du joueur (**/**/****):\n",
         message_error="Le format date (**/**/****) doit être respecter!",
         convertor=lambda s: datetime.datetime.strptime(s, "%d/%m/%Y"),
         validator=lambda _: True,
     )
     sexe = ask_user(
-        "Enter sexe du joueur H/F : ",
+        "Enter sexe du joueur H/F :\n",
         message_error="Doit être H ou F",
         validator=lambda s: s in {"H", "F"},
         convertor=lambda s: s.upper(),
     )
     classement = ask_user(
-        "Enter classement du joueur : ",
+        "Enter classement du joueur :\n",
         message_error=" le classement doit être un nombre positif",
         validator=lambda n: n > 0,
         convertor=int,

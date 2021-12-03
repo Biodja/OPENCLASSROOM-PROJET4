@@ -38,16 +38,16 @@ if __name__ == "__main__":
     formulaire_creation_tournoi = Formulaire(
         "Formulaire création tournoi",
         [
-            Field("nom", "Nom tournoi"),
-            Field("lieu", "Lieu du tournoi"),
-            dateField("date", "Date du tournoi"),
-            IntField("nombre_de_tours", "Nombre de tours"),
+            Field("nom", "Nom du tournoi\n"),
+            Field("lieu", "Lieu du tournoi\n"),
+            dateField("date", "Date du tournoi (**/**/****)\n"),
+            IntField("nombre_de_tours", "Nombre de tours\n"),
             ChoiceField(
                 "controle_du_temps",
                 "Quel est votre méthode de contrôle du temps ?",
                 [Blitz(), Bullet(), CoupRapide()],
             ),
-            Field("description", "Description"),
+            Field("description", "Description\n"),
         ],
         Tournoi,
     )
