@@ -65,10 +65,15 @@ class Tournoi:
         tournois.append(self)
 
     def ajouter_joueurs(self, joueurs: list):
+        """ Permet d'ajouter les joueurs dans la liste des joueurs du tournois
+        verifie si les joueurs du tournoi son pairs"""
+
+        # verifie si le nombre de joueurs est toujours pairs
         if (len(joueurs) + len(self.joueurs)) % 2 != 0:
             raise UserException(
                 "Impossible d'avoir un tournoi avec un nombre de joueurs impair"
             )
+        # verifie si il y'a des doublons dans la liste des joueurs du tournois
         doublons = []
         for joueur in self.joueurs:
             if any(hash(joueur) == hash(j) for j in joueurs):
@@ -146,12 +151,14 @@ class Tournoi:
                 self.joueurs, key=operator.attrgetter("classement"), reverse=True
             )
 
+            # permet de séparé la liste des joueurs en 2 
             index_milieu_liste = len(joueurs_tournois) // 2
             classement_superieur = joueurs_tournois[0:index_milieu_liste]
             classement_inferieur = joueurs_tournois[index_milieu_liste:]
 
             matchs = []
 
+            # permet de d'attribuer les couleurs au joueurs
             for joueur_blanc, joueur_noir in zip(
                 classement_superieur, classement_inferieur
             ):
@@ -175,26 +182,6 @@ class Tournoi:
         """Cette fonction permet de savoir le nombre de fois qu'un joueurs "j1" joue contre un autre joueurs "j2" ."""
 
         return sum(1 for t in self.tours for m in t.matchs if j1 in m and j2 in m)
-
-
-def ask_user(
-    message="",
-    message_error="Valeur invalide",
-    validator=lambda s: len(s) > 0,
-    convertor=lambda s: s,
-):
-    user_input = ""
-    while True:
-        user_input = input(message)
-        try:
-            user_input = convertor(user_input)
-        except Exception as e:
-            print(message_error, e)
-            continue
-        if not validator(user_input):
-            print(message_error)
-        else:
-            return user_input
 
 
 class ControleDuTemps:
@@ -298,7 +285,9 @@ class Match:
             # importer NotYetAvailable
             # raise NotYetAvailable("Le match est déjà terminé")
             raise NotYetAvailable("Le match est déjà terminé")
+        # permet d'attribuer les points aux participants du tournois 
         self.gagnant = gagnant
+        
         if self.gagnant:
             self.scores[gagnant] += 1.0
         else:
