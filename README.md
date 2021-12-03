@@ -1,7 +1,7 @@
 # Projet 4 Programme de jeu d'echec 
 
 Ce programme à été créé pour le projet 4, qui consistait à créer un programme de jeu d'échec répondant a un cahier des charges précis.
-# INSTALLATION DANS UN ENVIRONEMENT VIRTUE
+# INSTALLATION DANS UN ENVIRONEMENT VIRTUEL
 
 Depuis le terminal lancer la commande "python3 -m venv env" pour créer un nouvel environnement virtuel puis tapez "source env/bin/activate"
 
